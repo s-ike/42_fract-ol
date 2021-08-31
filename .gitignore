@@ -1,0 +1,37 @@
+# Project file
+fractol
+minilibx_mms_20200219*
+minilibx-linux
+tmp
+
+# Dev
+*_test.c
+*_old.c
+*.py
+
+# General
+.DS_Store
+
+# Editor
+.vscode
+
+# Prerequisites
+*.d
+
+# Object files
+*.o
+
+# Libraries
+*.dylib
+*.lib
+*.a
+
+# Executables
+*.exe
+*.out
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
