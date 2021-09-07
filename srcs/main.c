@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:37 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/07 23:28:39 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/07 23:34:04 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,5 @@ int
 	draw_mandelbrot(&img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
+	exit(EXIT_SUCCESS);
 }

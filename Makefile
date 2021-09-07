@@ -35,39 +35,42 @@ endif
 MLX_PATH	:= $(MLX_DIR)/$(MLX_NAME)
 INCLUDE		+= -I$(MLX_DIR)
 
-DEBUG		:= -g -fsanitize=address
+DEBUG		:= -g
+ifdef LEAKS
+DEBUG2		:=
+else
+DEBUG2		:= -fsanitize=address
+endif
+
 CC			:= gcc
 RM			:= rm -f
 
 .c.o:
-			$(CC) $(CFLAGS) $(DEBUG) $(INCLUDE) -c $< -o $@
+			$(CC) $(CFLAGS) $(DEBUG) $(DEBUG2) $(INCLUDE) -c $< -o $@
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ) $(LIBPATH) $(MLX_PATH)
 			cp $(MLX_PATH) .
-			$(CC) $(CFLAGS) $(OBJ) $(DEBUG) -L. $(MLX_FLAGS) $(LIBPATH) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJ) $(DEBUG) $(DEBUG2) -L. $(MLX_FLAGS) $(LIBPATH) -o $(NAME)
 			@echo $(C_GREEN)"=== Make Done ==="$(C_DEFAULT)$(C_REST)
 
-bonus:		$(BNS_OBJ) $(LIBPATH) $(MLX_PATH)
-			cp $(MLX_PATH) .
-			$(CC) $(CFLAGS) $(BNS_OBJ) $(DEBUG) -L. $(MLX_FLAGS) $(LIBPATH) -o $(NAME)
-			@echo $(C_GREEN)"=== Make Done ==="$(C_DEFAULT)$(C_REST)
-
-$(LIBPATH):
+$(LIBPATH):	init
 			$(MAKE) -C $(LIBDIR)
 
 $(MLX_PATH):
 			$(MAKE) -C $(MLX_DIR)
 
-init:		mlx
+init:		$(MLX_DIR)
 			git submodule update --init
+
+leaks:		$(LIBPATH) $(MLX_PATH)	## For leak check
+			$(MAKE) CFLAGS="$(CFLAGS) -D LEAKS=1" LEAKS=TRUE
 
 clean:
 			$(MAKE) clean -C $(LIBDIR)
 			$(MAKE) clean -C $(MLX_DIR)
 			$(RM) $(OBJ)
-			$(RM) $(BNS_OBJ)
 
 fclean:		clean
 			$(MAKE) fclean -C $(LIBDIR)
@@ -76,10 +79,11 @@ fclean:		clean
 
 re:			fclean $(NAME)
 
-mlx:
 ifeq ($(shell uname),Linux)
+$(MLX_DIR):
 			git clone https://github.com/42Paris/minilibx-linux.git
 else
+$(MLX_DIR):
 			curl -O https://projects.intra.42.fr/uploads/document/document/4671/minilibx_mms_20200219_beta.tgz
 			tar -xvf minilibx_mms_20200219_beta.tgz
 endif
@@ -87,5 +91,5 @@ endif
 delmlx:
 			rm -rf $(MLX_DIR)
 
-.PHONY:		all clean fclean re bonus
-.PHONY:		init mlx delmlx
+.PHONY:		all clean fclean re
+.PHONY:		init leaks mlx delmlx

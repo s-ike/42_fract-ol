@@ -6,11 +6,29 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:42 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/07 23:28:43 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/08 00:29:30 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+#ifdef LEAKS
+
+void
+	destructor(void)__attribute__((destructor));
+
+void
+	destructor(void)
+{
+	int		status;
+	char	buf[50];
+
+	snprintf(buf, 50, "leaks %d &> leaksout", getpid());
+	status = system(buf);
+	if (status)
+		system("cat leaksout >&2");
+}
+#endif
 
 void
 	ft_exit_with_usage(void)
