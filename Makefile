@@ -2,6 +2,7 @@ NAME		:= fractol
 
 SRCDIR		:= ./srcs/
 SRC			:= main.c \
+				draw.c \
 				exit.c \
 				validator.c
 SRC			:= $(addprefix $(SRCDIR), $(SRC))

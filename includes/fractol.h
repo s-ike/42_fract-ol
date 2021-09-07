@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/07 23:28:46 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/08 01:11:10 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+/* draw.c */
+void	ft_draw(char **argv, t_data *img);
 /* exit.c */
 void	ft_exit_with_usage(void);
 /* validator.c */
