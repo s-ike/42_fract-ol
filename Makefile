@@ -1,7 +1,10 @@
 NAME		:= fractol
 
 SRCDIR		:= ./srcs/
-SRC			:= $(SRCDIR)main.c
+SRC			:= main.c \
+				exit.c \
+				validator.c
+SRC			:= $(addprefix $(SRCDIR), $(SRC))
 OBJ			:= $(SRC:.c=.o)
 
 INCLUDE 	:= -I./includes/ \

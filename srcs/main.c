@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/07 23:28:37 by sikeda            #+#    #+#             */
+/*   Updated: 2021/09/07 23:28:39 by sikeda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 uint32_t
@@ -84,12 +96,14 @@ void
 }
 
 int
-	main(void)
+	main(int argc, char **argv)
 {
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
 
+	if (!ft_is_valid_args(argc, argv))
+		ft_exit_with_usage();
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, SCREEN_W, SCREEN_H, PRG_NAME);
 	img.img = mlx_new_image(mlx, SCREEN_W, SCREEN_H);

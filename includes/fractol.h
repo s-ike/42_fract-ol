@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
+/*   Updated: 2021/09/07 23:28:46 by sikeda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FLACTOL_H
 # define FLACTOL_H
 
@@ -5,6 +17,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <stdio.h>
+# include <string.h>
+# include <errno.h>
 # include <math.h>
 # include "libft.h"
 # include "t_bool.h"
@@ -15,6 +30,15 @@
 # endif
 
 # define PRG_NAME "fractol"
+
+# define MSG_USAGE "usage: "
+# define MSG_USAGE_ARGS "[mj]"
+
+# define ARG_M "m"
+# define ARG_MANDELBROT "mandelbrot"
+# define ARG_J "j"
+# define ARG_JULIA "julia"
+
 # define SCREEN_W 800
 # define SCREEN_H 800
 # define LOOP 20
@@ -34,5 +58,10 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 }	t_data;
+
+/* exit.c */
+void	ft_exit_with_usage(void);
+/* validator.c */
+t_bool	ft_is_valid_args(int argc, char **argv);
 
 #endif
