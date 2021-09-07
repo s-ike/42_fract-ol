@@ -1,4 +1,4 @@
-#include "flactol.h"
+#include "fractol.h"
 
 uint32_t
 	get_color(uint8_t r, uint8_t g, uint8_t b)
