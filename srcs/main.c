@@ -23,26 +23,28 @@ void
 }
 
 t_bool
-	include_mandelbrot_set(t_complex c, int *i)
+	include_mandelbrot_set(t_complex c)
 {
-	t_complex z;
-	t_complex p;
-	t_complex tmp;
+	int			i;
+	t_complex	z;
+	t_complex	p;
+	t_complex	tmp;
 
 	z[R] = 0.0;
 	z[I] = 0.0;
-	for (*i = 0; *i < LOOP; (*i)++)
+	i = -1;
+	while (++i < LOOP)
 	{
 		p[R] = z[R] * z[R];
 		p[I] = z[I] * z[I];
 		if (4.0 < p[R] + p[I])
-			return (FALSE);
+			return (i);
 		tmp[R] = p[R] - p[I];
 		tmp[I] = z[R] * z[I] * 2;
 		z[R] = tmp[R] + c[R];
 		z[I] = tmp[I] + c[I];
 	}
-	return (TRUE);
+	return (-1);
 }
 
 int
@@ -50,16 +52,16 @@ int
 {
 	return ((i % 256) * (255 - (i % 256)) / 65);
 }
-#include <stdio.h>
+
 void
 	draw_mandelbrot(t_data *img)
 {
-	float xmin = -2.0;
-	float ymin = -2.0;
-	float xmax = 2.0;
-	float ymax = 2.0;
-	float dx = (xmax - xmin) / (double)SCREEN_W;
-	float dy = (ymax - ymin) / (double)SCREEN_H;
+	float	xmin = -2.0;
+	float	ymin = -2.0;
+	float	xmax = 2.0;
+	float	ymax = 2.0;
+	float	dx = (xmax - xmin) / (double)SCREEN_W;
+	float	dy = (ymax - ymin) / (double)SCREEN_H;
 
 	for (int iy = 0; iy < SCREEN_H; iy++)
 	{
@@ -70,8 +72,8 @@ void
 			t_complex c;
 			c[R] = x;
 			c[I] = y;
-			int	i;
-			if (!include_mandelbrot_set(c, &i))
+			int	i = include_mandelbrot_set(c);
+			if (0 <= i)
 			{
 				// TODO: INT range
 				// i += 51;
