@@ -22,16 +22,12 @@ void
 	*(unsigned int *)dst = color;
 }
 
-t_bool
-	include_mandelbrot_set(t_complex c)
+static int
+	include_fractal_set(t_complex z, t_complex c)
 {
 	int			i;
-	t_complex	z;
 	t_complex	p;
-	t_complex	tmp;
 
-	z[R] = 0.0;
-	z[I] = 0.0;
 	i = -1;
 	while (++i < LOOP)
 	{
@@ -39,10 +35,8 @@ t_bool
 		p[I] = z[I] * z[I];
 		if (4.0 < p[R] + p[I])
 			return (i);
-		tmp[R] = p[R] - p[I];
-		tmp[I] = z[R] * z[I] * 2;
-		z[R] = tmp[R] + c[R];
-		z[I] = tmp[I] + c[I];
+		z[I] = z[R] * z[I] * 2 + c[I];
+		z[R] = p[R] - p[I] + c[R];
 	}
 	return (-1);
 }
@@ -53,29 +47,53 @@ int
 	return ((i % 256) * (255 - (i % 256)) / 65);
 }
 
-void
+static void
 	draw_mandelbrot(t_data *img)
 {
-	float		dx;
-	float		dy;
 	int			iy;
 	int			ix;
+	int			i;
+	t_complex	z;
 	t_complex	c;
 
-	dx = (XMAX - XMIN) / (double)SCREEN_W;
-	dy = (YMAX - YMIN) / (double)SCREEN_H;
 	iy = -1;
 	while (++iy < SCREEN_H)
 	{
 		ix = -1;
 		while (++ix < SCREEN_W)
 		{
-			float x = XMIN + dx * (double)ix;
-			float y = YMIN + dy * (double)iy;
+			c[R] = XMIN + (XMAX - XMIN) / (double)SCREEN_W * (double)ix;
+			c[I] = YMIN + (YMAX - YMIN) / (double)SCREEN_H * (double)iy;
+			ft_bzero(&z, sizeof(t_complex));
+			i = include_fractal_set(z, c);
+			if (0 <= i)
+			{
+				// TODO: INT range
+				// i += 51;
+				my_mlx_pixel_put(img, ix, iy, get_color(cr(i * COLOR), cr(i * COLOR + COLOR_RANGE), cr(i * COLOR + COLOR_RANGE * 2)));
+			}
+		}
+	}
+}
 
-			c[R] = x;
-			c[I] = y;
-			int	i = include_mandelbrot_set(c);
+static void
+	draw_julia(t_data *img)
+{
+	int			iy;
+	int			ix;
+	int			i;
+	t_complex	z;
+	t_complex	c = {0.3, 0.63};
+
+	iy = -1;
+	while (++iy < SCREEN_H)
+	{
+		ix = -1;
+		while (++ix < SCREEN_W)
+		{
+			z[R] = XMIN + (XMAX - XMIN) / (double)SCREEN_W * (double)ix;
+			z[I] = YMIN + (YMAX - YMIN) / (double)SCREEN_H * (double)iy;
+			i = include_fractal_set(z, c);
 			if (0 <= i)
 			{
 				// TODO: INT range
@@ -97,6 +115,6 @@ void
 	else if (!ft_strcmp(argv[1], ARG_J)
 		|| !ft_strcmp(argv[1], ARG_JULIA))
 	{
-		return ;
+		draw_julia(img);
 	}
 }
