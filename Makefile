@@ -4,6 +4,7 @@ SRCDIR		:= ./srcs/
 SRC			:= main.c \
 				draw.c \
 				exit.c \
+				hooks.c \
 				validator.c
 SRC			:= $(addprefix $(SRCDIR), $(SRC))
 OBJ			:= $(SRC:.c=.o)

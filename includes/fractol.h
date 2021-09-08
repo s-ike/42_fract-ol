@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/08 19:15:32 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/08 23:19:55 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ typedef struct s_fractol
 void	ft_draw(char **argv, t_mlximg *img);
 /* exit.c */
 void	ft_exit_with_usage(void);
+void	ft_exit(t_fractol *fractol, int exit_status);
+/* hooks.c */
+int		ft_x_close(t_fractol *fractol);
 /* validator.c */
 t_bool	ft_is_valid_args(int argc, char **argv);
 

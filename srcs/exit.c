@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:42 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/08 00:29:30 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/08 23:54:43 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,21 @@ void
 	ft_putstr_fd(MSG_USAGE, STDERR_FILENO);
 	ft_putendl_fd(MSG_USAGE_ARGS, STDERR_FILENO);
 	exit(EXIT_FAILURE);
+}
+
+void
+	ft_exit(t_fractol *fractol, int exit_status)
+{
+	if (fractol->win)
+		mlx_destroy_window(fractol->mlx, fractol->win);
+	if (fractol->img.img)
+		mlx_destroy_image(fractol->mlx, fractol->img.img);
+	if (fractol->mlx)
+		mlx_destroy_display(fractol->mlx);
+	if (fractol->mlx)
+		free(fractol->mlx);
+	fractol->win = NULL;
+	fractol->img.img = NULL;
+	fractol->mlx = NULL;
+	exit(exit_status);
 }

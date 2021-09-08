@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:37 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/08 19:21:54 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/08 23:12:17 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int
 			flactol.img.img, &flactol.img.bits_per_pixel, &flactol.img.line_length, &flactol.img.endian);
 	ft_draw(argv, &flactol.img);
 	mlx_put_image_to_window(flactol.mlx, flactol.win, flactol.img.img, 0, 0);
+	mlx_hook(flactol.win, BTN_X, 1L << STRUCTURE_NOTIFY_MASK, ft_x_close, &flactol);
 	mlx_loop(flactol.mlx);
 	exit(EXIT_SUCCESS);
 }
