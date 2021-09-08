@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/08 15:53:33 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/08 19:15:32 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <errno.h>
 # include <math.h>
 # include "libft.h"
+# include "key_map.h"
 # include "t_bool.h"
 # ifdef LINUX
 #  include "../minilibx-linux/mlx.h"
@@ -58,17 +59,24 @@
 
 typedef float	t_complex[2];
 
-typedef struct s_data
+typedef struct s_mlximg
 {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}	t_data;
+}	t_mlximg;
+
+typedef struct s_fractol
+{
+	void		*mlx;
+	void		*win;
+	t_mlximg	img;
+}	t_fractol;
 
 /* draw.c */
-void	ft_draw(char **argv, t_data *img);
+void	ft_draw(char **argv, t_mlximg *img);
 /* exit.c */
 void	ft_exit_with_usage(void);
 /* validator.c */

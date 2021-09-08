@@ -14,7 +14,7 @@ uint32_t
 }
 
 void
-	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+	my_mlx_pixel_put(t_mlximg *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -48,7 +48,7 @@ int
 }
 
 static void
-	draw_mandelbrot(t_data *img)
+	draw_mandelbrot(t_mlximg *img)
 {
 	int			iy;
 	int			ix;
@@ -77,13 +77,13 @@ static void
 }
 
 static void
-	draw_julia(t_data *img)
+	draw_julia(t_mlximg *img)
 {
 	int			iy;
 	int			ix;
 	int			i;
 	t_complex	z;
-	t_complex	c = {0.3, 0.63};
+	t_complex	c = {0.4, 0.325};
 
 	iy = -1;
 	while (++iy < SCREEN_H)
@@ -105,7 +105,7 @@ static void
 }
 
 void
-	ft_draw(char **argv, t_data *img)
+	ft_draw(char **argv, t_mlximg *img)
 {
 	if (!ft_strcmp(argv[1], ARG_M)
 		|| !ft_strcmp(argv[1], ARG_MANDELBROT))
