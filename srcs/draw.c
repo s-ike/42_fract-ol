@@ -19,7 +19,7 @@ void
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 t_bool
@@ -56,20 +56,23 @@ int
 void
 	draw_mandelbrot(t_data *img)
 {
-	float	xmin = -2.0;
-	float	ymin = -2.0;
-	float	xmax = 2.0;
-	float	ymax = 2.0;
-	float	dx = (xmax - xmin) / (double)SCREEN_W;
-	float	dy = (ymax - ymin) / (double)SCREEN_H;
+	float		dx;
+	float		dy;
+	int			iy;
+	int			ix;
+	t_complex	c;
 
-	for (int iy = 0; iy < SCREEN_H; iy++)
+	dx = (XMAX - XMIN) / (double)SCREEN_W;
+	dy = (YMAX - YMIN) / (double)SCREEN_H;
+	iy = -1;
+	while (++iy < SCREEN_H)
 	{
-		for (int ix = 0; ix < SCREEN_W; ix++)
+		ix = -1;
+		while (++ix < SCREEN_W)
 		{
-			float x = xmin + dx*(double)ix;
-			float y = ymin + dy*(double)iy;
-			t_complex c;
+			float x = XMIN + dx * (double)ix;
+			float y = YMIN + dy * (double)iy;
+
 			c[R] = x;
 			c[I] = y;
 			int	i = include_mandelbrot_set(c);

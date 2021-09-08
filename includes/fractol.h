@@ -6,12 +6,12 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/08 01:11:10 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/08 01:50:57 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLACTOL_H
-# define FLACTOL_H
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
 # include <math.h>
 # include <unistd.h>
@@ -41,9 +41,17 @@
 
 # define SCREEN_W 800
 # define SCREEN_H 800
+
 # define LOOP 20
 # define COLOR 9
 # define COLOR_RANGE 85
+
+# define NUM_MIN -2.0
+# define XMIN NUM_MIN
+# define YMIN NUM_MIN
+# define NUM_MAX 2.0
+# define XMAX NUM_MAX
+# define YMAX NUM_MAX
 
 # define R 0
 # define I 1
