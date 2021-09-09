@@ -66,7 +66,9 @@ static void
 			c[I] = fractol->min_imgn + (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H * (double)iy;
 			ft_bzero(&z, sizeof(t_complex));
 			i = include_fractal_set(z, c);
-			if (0 <= i)
+			if (i < 0)
+				my_mlx_pixel_put(&fractol->img, ix, iy, get_color(0, 0, 0));
+			else
 			{
 				// TODO: INT range
 				// i += 51;
@@ -94,7 +96,9 @@ static void
 			z[R] = fractol->min_real + (fractol->max_real - fractol->min_real) / (double)SCREEN_W * (double)ix;
 			z[I] = fractol->min_imgn + (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H * (double)iy;
 			i = include_fractal_set(z, c);
-			if (0 <= i)
+			if (i < 0)
+				my_mlx_pixel_put(&fractol->img, ix, iy, get_color(0, 0, 0));
+			else
 			{
 				// TODO: INT range
 				// i += 51;

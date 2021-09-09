@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 02:02:36 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/09 17:52:45 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/09 23:43:01 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int
 		ft_exit(fractol, EXIT_SUCCESS);
 	return (0);
 }
-
+#include <stdio.h>
 int
 	ft_mouse(int button, int x, int y, t_fractol *fractol)
 {
+	(void)fractol;
 	(void)x;
 	(void)y;
-	(void)fractol;
 	if (button == MOUSE_ZOOM_IN)
-		ft_putendl_fd("zoom in", STDOUT_FILENO);
+		ft_zoom_in(fractol);
 	else if (button == MOUSE_ZOOM_OUT)
-		ft_putendl_fd("zoom out", STDOUT_FILENO);
+		ft_zoom_out(fractol);
 	return (0);
 }
 

@@ -6,7 +6,8 @@ SRC			:= main.c \
 				exit.c \
 				hooks.c \
 				init.c \
-				validator.c
+				validator.c \
+				zoom.c
 SRC			:= $(addprefix $(SRCDIR), $(SRC))
 OBJ			:= $(SRC:.c=.o)
 

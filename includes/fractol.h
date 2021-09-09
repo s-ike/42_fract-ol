@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/09 22:07:20 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/09 23:00:15 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define LOOP 20
 # define COLOR 9
 # define COLOR_RANGE 85
+
+# define ZOOM_RATIO 0.9
 
 # define NUM_MIN -2.0
 # define MIN_REAL NUM_MIN
@@ -93,5 +95,8 @@ int		ft_x_close(t_fractol *fractol);
 t_bool	ft_init_fractol(t_fractol *fractol, char *type);
 /* validator.c */
 t_bool	ft_is_valid_args(int argc, char **argv);
+/* zoom.c */
+void	ft_zoom_in(t_fractol *fractol);
+void	ft_zoom_out(t_fractol *fractol);
 
 #endif
