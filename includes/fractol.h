@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/09 23:00:15 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/10 00:05:39 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_bool	ft_init_fractol(t_fractol *fractol, char *type);
 /* validator.c */
 t_bool	ft_is_valid_args(int argc, char **argv);
 /* zoom.c */
-void	ft_zoom_in(t_fractol *fractol);
-void	ft_zoom_out(t_fractol *fractol);
+void	ft_zoom_in(t_fractol *fractol, double x, double y);
+void	ft_zoom_out(t_fractol *fractol, double x, double y);
 
 #endif

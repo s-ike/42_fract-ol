@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 23:40:07 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/09 23:40:31 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/10 00:24:27 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@
 /*
 ** BUTTONS
 */
-# define MOUSE_ZOOM_OUT	4
-# define MOUSE_ZOOM_IN	5
+# define MOUSE_ZOOM_IN	4
+# define MOUSE_ZOOM_OUT	5
 
 /*
 ** X11 EVENTS
