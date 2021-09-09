@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/09 17:35:39 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/09 22:07:20 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@
 # define COLOR_RANGE 85
 
 # define NUM_MIN -2.0
-# define XMIN NUM_MIN
-# define YMIN NUM_MIN
+# define MIN_REAL NUM_MIN
+# define MIN_IMGN NUM_MIN
 # define NUM_MAX 2.0
-# define XMAX NUM_MAX
-# define YMAX NUM_MAX
+# define MAX_REAL NUM_MAX
+# define MAX_IMGN NUM_MAX
 
 # define R 0
 # define I 1
@@ -73,10 +73,15 @@ typedef struct s_fractol
 	void		*mlx;
 	void		*win;
 	t_mlximg	img;
+	double		min_real;
+	double		max_real;
+	double		min_imgn;
+	double		max_imgn;
+	char		type;
 }	t_fractol;
 
 /* draw.c */
-void	ft_draw(char **argv, t_mlximg *img);
+void	ft_draw(t_fractol *fractol);
 /* exit.c */
 void	ft_exit_with_usage(void);
 void	ft_exit(t_fractol *fractol, int exit_status);
@@ -84,6 +89,8 @@ void	ft_exit(t_fractol *fractol, int exit_status);
 int		ft_key_press(int key, t_fractol *fractol);
 int		ft_mouse(int button,int x,int y, t_fractol *fractol);
 int		ft_x_close(t_fractol *fractol);
+/* init.c */
+t_bool	ft_init_fractol(t_fractol *fractol, char *type);
 /* validator.c */
 t_bool	ft_is_valid_args(int argc, char **argv);
 

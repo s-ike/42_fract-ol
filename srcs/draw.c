@@ -48,7 +48,7 @@ int
 }
 
 static void
-	draw_mandelbrot(t_mlximg *img)
+	draw_mandelbrot(t_fractol *fractol)
 {
 	int			iy;
 	int			ix;
@@ -62,22 +62,22 @@ static void
 		ix = -1;
 		while (++ix < SCREEN_W)
 		{
-			c[R] = XMIN + (XMAX - XMIN) / (double)SCREEN_W * (double)ix;
-			c[I] = YMIN + (YMAX - YMIN) / (double)SCREEN_H * (double)iy;
+			c[R] = fractol->min_real + (fractol->max_real - fractol->min_real) / (double)SCREEN_W * (double)ix;
+			c[I] = fractol->min_imgn + (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H * (double)iy;
 			ft_bzero(&z, sizeof(t_complex));
 			i = include_fractal_set(z, c);
 			if (0 <= i)
 			{
 				// TODO: INT range
 				// i += 51;
-				my_mlx_pixel_put(img, ix, iy, get_color(cr(i * COLOR), cr(i * COLOR + COLOR_RANGE), cr(i * COLOR + COLOR_RANGE * 2)));
+				my_mlx_pixel_put(&fractol->img, ix, iy, get_color(cr(i * COLOR), cr(i * COLOR + COLOR_RANGE), cr(i * COLOR + COLOR_RANGE * 2)));
 			}
 		}
 	}
 }
 
 static void
-	draw_julia(t_mlximg *img)
+	draw_julia(t_fractol *fractol)
 {
 	int			iy;
 	int			ix;
@@ -91,30 +91,24 @@ static void
 		ix = -1;
 		while (++ix < SCREEN_W)
 		{
-			z[R] = XMIN + (XMAX - XMIN) / (double)SCREEN_W * (double)ix;
-			z[I] = YMIN + (YMAX - YMIN) / (double)SCREEN_H * (double)iy;
+			z[R] = fractol->min_real + (fractol->max_real - fractol->min_real) / (double)SCREEN_W * (double)ix;
+			z[I] = fractol->min_imgn + (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H * (double)iy;
 			i = include_fractal_set(z, c);
 			if (0 <= i)
 			{
 				// TODO: INT range
 				// i += 51;
-				my_mlx_pixel_put(img, ix, iy, get_color(cr(i * COLOR), cr(i * COLOR + COLOR_RANGE), cr(i * COLOR + COLOR_RANGE * 2)));
+				my_mlx_pixel_put(&fractol->img, ix, iy, get_color(cr(i * COLOR), cr(i * COLOR + COLOR_RANGE), cr(i * COLOR + COLOR_RANGE * 2)));
 			}
 		}
 	}
 }
 
 void
-	ft_draw(char **argv, t_mlximg *img)
+	ft_draw(t_fractol *fractol)
 {
-	if (!ft_strcmp(argv[1], ARG_M)
-		|| !ft_strcmp(argv[1], ARG_MANDELBROT))
-	{
-		draw_mandelbrot(img);
-	}
-	else if (!ft_strcmp(argv[1], ARG_J)
-		|| !ft_strcmp(argv[1], ARG_JULIA))
-	{
-		draw_julia(img);
-	}
+	if (fractol->type == *(ARG_M))
+		draw_mandelbrot(fractol);
+	else if (fractol->type == *(ARG_J))
+		draw_julia(fractol);
 }
