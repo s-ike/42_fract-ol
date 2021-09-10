@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/10 00:05:39 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/10 21:16:13 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define SCREEN_W 800
 # define SCREEN_H 800
 
-# define LOOP 20
+# define LOOP 50
 # define COLOR 9
 # define COLOR_RANGE 85
 
@@ -55,6 +55,9 @@
 # define NUM_MAX 2.0
 # define MAX_REAL NUM_MAX
 # define MAX_IMGN NUM_MAX
+
+# define JURIA_C_R 0.4
+# define JURIA_C_I -0.325
 
 # define R 0
 # define I 1

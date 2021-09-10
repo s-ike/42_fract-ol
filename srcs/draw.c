@@ -85,8 +85,10 @@ static void
 	int			ix;
 	int			i;
 	t_complex	z;
-	t_complex	c = {0.4, 0.325};
+	t_complex	c;
 
+	c[R] = JURIA_C_R;
+	c[I] = JURIA_C_I;
 	iy = -1;
 	while (++iy < SCREEN_H)
 	{
