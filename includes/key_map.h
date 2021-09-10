@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 23:40:07 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/10 00:24:27 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/10 21:40:51 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,7 @@
 /*
 ** KEYS
 */
-# ifdef LINUX
-#  define KEY_UP	65362
-#  define KEY_LEFT	65361
-#  define KEY_RIGHT	65363
-#  define KEY_DOWN	65364
-#  define KEY_A		97
-#  define KEY_S		115
-#  define KEY_D		100
-#  define KEY_W		119
-#  define KEY_B		98
-#  define KEY_C		99
-#  define KEY_G		103
-#  define KEY_R		114
-#  define KEY_ESC	65307
-# else
+# ifdef MMS
 #  define KEY_UP	126
 #  define KEY_LEFT	123
 #  define KEY_RIGHT	124
@@ -44,6 +30,20 @@
 #  define KEY_G		5
 #  define KEY_R		15
 #  define KEY_ESC	53
+# else
+#  define KEY_UP	65362
+#  define KEY_LEFT	65361
+#  define KEY_RIGHT	65363
+#  define KEY_DOWN	65364
+#  define KEY_A		97
+#  define KEY_S		115
+#  define KEY_D		100
+#  define KEY_W		119
+#  define KEY_B		98
+#  define KEY_C		99
+#  define KEY_G		103
+#  define KEY_R		114
+#  define KEY_ESC	65307
 # endif
 
 /*
@@ -91,10 +91,10 @@
 # define GENERIC_EVENT		35
 # define LAST_EVENT			36
 
-# ifdef LINUX
-#  define BTN_X	CLIENT_MESSAGE
-# else
+# ifdef MMS
 #  define BTN_X	DESTROY_NOTIFY
+# else
+#  define BTN_X	CLIENT_MESSAGE
 # endif
 
 /*
@@ -119,7 +119,7 @@
 # define VISIBILITY_CHANGE_MASK		16
 # define STRUCTURE_NOTIFY_MASK		17
 # define RESIZE_REDIRECT_MASK		18
-# define SUBSTRUCTURE_Notify_MASK	19
+# define SUBSTRUCTURE_NOTIFY_MASK	19
 # define SUBSTRUCTURE_REDIRECT_MASK	20
 # define FOCUS_CHANGE_MASK			21
 # define PROPERTY_CHANGE_MASK		22

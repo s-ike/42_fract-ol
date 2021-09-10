@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:42 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/09 17:16:59 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/10 21:25:57 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ void
 		mlx_destroy_window(fractol->mlx, fractol->win);
 	if (fractol->img.img)
 		mlx_destroy_image(fractol->mlx, fractol->img.img);
-#ifdef LINUX
 	if (fractol->mlx)
 		mlx_destroy_display(fractol->mlx);
-#endif
 	if (fractol->mlx)
 		free(fractol->mlx);
 	fractol->win = NULL;

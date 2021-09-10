@@ -17,19 +17,18 @@ INCLUDE 	:= -I./includes/ \
 LIBDIR		:= ./libft
 LIBPATH		:= $(LIBDIR)/libft.a
 
-ifeq ($(shell uname),Linux)
 MLX_DIR		:= ./minilibx-linux
+ifeq ($(shell uname),Linux)
 MLX_NAME	:= libmlx.a
 MLX_FLAGS	:= -lmlx -lXext -lX11 -lm
-CFLAGS		:= -Wall -Wextra -Werror -D LINUX
+CFLAGS		:= -Wall -Wextra -Werror
 
 C_GREEN		:= "\e[32m"
 C_DEFAULT	:= "\e[39m"
 C_RESET		:= "\e[0m"
 else
-MLX_DIR		:= ./minilibx_mms_20200219
-MLX_NAME	:= libmlx.dylib
-MLX_FLAGS	:= -lmlx -framework OpenGL -framework AppKit -lz
+MLX_NAME	:= libmlx_Darwin.a
+MLX_FLAGS	:= -lmlx_Darwin -L/usr/X11/include/../lib -lXext -lX11
 CFLAGS		:= -Wall -Wextra -Werror
 
 C_GREEN		:= "\x1b[32m"
@@ -83,14 +82,8 @@ fclean:		clean
 
 re:			fclean $(NAME)
 
-ifeq ($(shell uname),Linux)
 $(MLX_DIR):
 			git clone https://github.com/42Paris/minilibx-linux.git
-else
-$(MLX_DIR):
-			curl -O https://projects.intra.42.fr/uploads/document/document/4671/minilibx_mms_20200219_beta.tgz
-			tar -xvf minilibx_mms_20200219_beta.tgz
-endif
 
 delmlx:
 			rm -rf $(MLX_DIR)
