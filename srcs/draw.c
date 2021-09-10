@@ -23,13 +23,13 @@ void
 }
 
 static int
-	include_fractal_set(t_complex z, t_complex c)
+	include_fractal_set(t_complex z, t_complex c, t_fractol *fractol)
 {
 	int			i;
 	t_complex	p;
 
 	i = -1;
-	while (++i < LOOP)
+	while (++i < fractol->itr_max)
 	{
 		p[R] = z[R] * z[R];
 		p[I] = z[I] * z[I];
@@ -65,7 +65,7 @@ static void
 			c[R] = fractol->min_real + (fractol->max_real - fractol->min_real) / (double)SCREEN_W * (double)ix;
 			c[I] = fractol->min_imgn + (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H * (double)iy;
 			ft_bzero(&z, sizeof(t_complex));
-			i = include_fractal_set(z, c);
+			i = include_fractal_set(z, c, fractol);
 			if (i < 0)
 				my_mlx_pixel_put(&fractol->img, ix, iy, get_color(0, 0, 0));
 			else
@@ -97,7 +97,7 @@ static void
 		{
 			z[R] = fractol->min_real + (fractol->max_real - fractol->min_real) / (double)SCREEN_W * (double)ix;
 			z[I] = fractol->min_imgn + (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H * (double)iy;
-			i = include_fractal_set(z, c);
+			i = include_fractal_set(z, c, fractol);
 			if (i < 0)
 				my_mlx_pixel_put(&fractol->img, ix, iy, get_color(0, 0, 0));
 			else

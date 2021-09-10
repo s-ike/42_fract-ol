@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/10 21:41:00 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/11 00:37:02 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
-# include <stdio.h>
 # include <string.h>
 # include <errno.h>
 # include <math.h>
@@ -39,7 +38,8 @@
 # define SCREEN_W 800
 # define SCREEN_H 800
 
-# define LOOP 50
+# define ITR_BASE 50
+# define ITR_RATIO 1.1
 # define COLOR 9
 # define COLOR_RANGE 85
 
@@ -58,7 +58,7 @@
 # define R 0
 # define I 1
 
-typedef float	t_complex[2];
+typedef double	t_complex[2];
 
 typedef struct s_mlximg
 {
@@ -78,6 +78,8 @@ typedef struct s_fractol
 	double		max_real;
 	double		min_imgn;
 	double		max_imgn;
+	int			itr_base;
+	int			itr_max;
 	char		type;
 }	t_fractol;
 

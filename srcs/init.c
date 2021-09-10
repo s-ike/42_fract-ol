@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:57:36 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/09 22:06:37 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/11 00:48:32 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ t_bool
 	fractol->max_imgn = MAX_IMGN;
 	fractol->min_imgn = MIN_IMGN;
 	fractol->type = *type;
+	fractol->itr_base = ITR_BASE;
+	fractol->itr_max = (int)(fractol->itr_base * ITR_RATIO);
 	return (TRUE);
 }
