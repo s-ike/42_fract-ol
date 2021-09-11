@@ -6,6 +6,7 @@ SRC			:= main.c \
 				exit.c \
 				hooks.c \
 				init.c \
+				move.c \
 				validator.c \
 				zoom.c
 SRC			:= $(addprefix $(SRCDIR), $(SRC))
@@ -82,11 +83,13 @@ fclean:		clean
 
 re:			fclean $(NAME)
 
+bonus:		$(NAME)
+
 $(MLX_DIR):
 			git clone https://github.com/42Paris/minilibx-linux.git
 
 delmlx:
 			rm -rf $(MLX_DIR)
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re bonus
 .PHONY:		init leaks mlx delmlx

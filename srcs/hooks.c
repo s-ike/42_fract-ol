@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 02:02:36 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/10 01:11:51 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/11 07:34:18 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ int
 {
 	if (key == KEY_ESC)
 		ft_exit(fractol, EXIT_SUCCESS);
+	else if (key == KEY_UP || key == KEY_DOWN
+		|| key == KEY_LEFT || key == KEY_RIGHT)
+		ft_move(key, fractol);
 	return (0);
 }
 
