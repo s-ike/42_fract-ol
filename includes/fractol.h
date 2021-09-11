@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/11 07:48:07 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/11 23:15:05 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 
 # define ITR_BASE 50
 # define ITR_RATIO 1.1
-# define COLOR 9
+# define COLOR_RATIO 9
 # define COLOR_RANGE 85
 
 # define ZOOM_RATIO 0.9
@@ -81,6 +81,7 @@ typedef struct s_fractol
 	double		max_imgn;
 	int			itr_base;
 	int			itr_max;
+	int			color_itr;
 	char		type;
 }	t_fractol;
 
