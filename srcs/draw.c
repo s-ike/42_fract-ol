@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 23:10:20 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/12 21:48:14 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 07:42:39 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ static void
 void
 	ft_draw(t_fractol *fractol)
 {
-	if (fractol->type == *(ARG_M))
+	if (fractol->type == TYPE_MANDELBROT)
 		draw_mandelbrot(fractol);
-	else if (fractol->type == *(ARG_J))
+	else if (fractol->type == TYPE_JULIA)
 		draw_julia(fractol);
 }

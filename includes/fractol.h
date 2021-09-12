@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/11 23:15:05 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 08:01:17 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <string.h>
+# include <stdio.h>
 # include <errno.h>
 # include <math.h>
 # include "libft.h"
@@ -26,14 +27,6 @@
 # include "../minilibx-linux/mlx.h"
 
 # define PRG_NAME "fractol"
-
-# define MSG_USAGE "usage: "
-# define MSG_USAGE_ARGS "[mj]"
-
-# define ARG_M "m"
-# define ARG_MANDELBROT "mandelbrot"
-# define ARG_J "j"
-# define ARG_JULIA "julia"
 
 # define SCREEN_W 800
 # define SCREEN_H 800
@@ -59,6 +52,14 @@
 # define R 0
 # define I 1
 
+enum e_type
+{
+	TYPE_START,
+	TYPE_MANDELBROT,
+	TYPE_JULIA,
+	TYPE_END
+};
+
 typedef double	t_complex[2];
 
 typedef struct s_mlximg
@@ -82,7 +83,7 @@ typedef struct s_fractol
 	int			itr_base;
 	int			itr_max;
 	int			color_itr;
-	char		type;
+	int			type;
 }	t_fractol;
 
 /* draw.c */
@@ -95,7 +96,7 @@ int		ft_key_press(int key, t_fractol *fractol);
 int		ft_mouse(int button, int x, int y, t_fractol *fractol);
 int		ft_x_close(t_fractol *fractol);
 /* init.c */
-t_bool	ft_init_fractol(t_fractol *fractol, char *type);
+t_bool	ft_init_fractol(t_fractol *fractol, int type);
 /* move.c */
 void	ft_move(int key, t_fractol *fractol);
 /* validator.c */

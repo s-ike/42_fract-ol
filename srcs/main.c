@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:37 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/09 23:13:08 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 07:41:26 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int
 
 	if (ft_is_valid_args(argc, argv) == FALSE)
 		ft_exit_with_usage();
-	if (ft_init_fractol(&fractol, argv[1]) == FALSE)
+	if (ft_init_fractol(&fractol, ft_atoi(argv[1])) == FALSE)
 		ft_exit(&fractol, EXIT_FAILURE);
 	mlx_loop_hook(fractol.mlx, main_loop, &fractol);
 	mlx_hook(fractol.win, KEY_PRESS, 1L << KEY_PRESS_MASK, ft_key_press, &fractol);

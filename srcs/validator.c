@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:32 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/07 23:31:39 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 07:44:35 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ t_bool
 {
 	if (argc != 2)
 		return (FALSE);
-	if (!ft_strcmp(argv[1], ARG_M)
-		|| !ft_strcmp(argv[1], ARG_J)
-		|| !ft_strcmp(argv[1], ARG_MANDELBROT)
-		|| !ft_strcmp(argv[1], ARG_JULIA))
+	if (ft_strlen(argv[1]) == 1
+		&& ft_isdigit(*argv[1])
+		&& ft_atoi(argv[1]) > TYPE_START
+		&& ft_atoi(argv[1]) < TYPE_END)
 	{
 		return (TRUE);
 	}

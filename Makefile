@@ -11,6 +11,7 @@ SRC			:= main.c \
 				zoom.c
 SRC			:= $(addprefix $(SRCDIR), $(SRC))
 OBJ			:= $(SRC:.c=.o)
+DEP			:= $(SRC:.c=.d)
 
 INCLUDE 	:= -I./includes/ \
 				-I./libft/
@@ -22,7 +23,6 @@ MLX_DIR		:= ./minilibx-linux
 ifeq ($(shell uname),Linux)
 MLX_NAME	:= libmlx.a
 MLX_FLAGS	:= -lmlx -lXext -lX11 -lm
-CFLAGS		:= -Wall -Wextra -Werror
 
 C_GREEN		:= "\e[32m"
 C_DEFAULT	:= "\e[39m"
@@ -30,7 +30,6 @@ C_RESET		:= "\e[0m"
 else
 MLX_NAME	:= libmlx_Darwin.a
 MLX_FLAGS	:= -lmlx_Darwin -L/usr/X11/include/../lib -lXext -lX11
-CFLAGS		:= -Wall -Wextra -Werror
 
 C_GREEN		:= "\x1b[32m"
 C_DEFAULT	:= "\x1b[39m"
@@ -39,6 +38,7 @@ endif
 MLX_PATH	:= $(MLX_DIR)/$(MLX_NAME)
 INCLUDE		+= -I$(MLX_DIR)
 
+CFLAGS		:= -Wall -Wextra -Werror -MMD -MP
 DEBUG		:= -g
 ifdef LEAKS
 DEBUG2		:=
@@ -74,7 +74,7 @@ leaks:		$(LIBPATH) $(MLX_PATH)	## For leak check
 clean:
 			$(MAKE) clean -C $(LIBDIR)
 			$(MAKE) clean -C $(MLX_DIR)
-			$(RM) $(OBJ)
+			$(RM) $(OBJ) $(DEP)
 
 fclean:		clean
 			$(MAKE) fclean -C $(LIBDIR)
@@ -90,6 +90,8 @@ $(MLX_DIR):
 
 delmlx:
 			rm -rf $(MLX_DIR)
+
+-include	$(DEP)
 
 .PHONY:		all clean fclean re bonus
 .PHONY:		init leaks mlx delmlx

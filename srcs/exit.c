@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:42 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/10 21:25:57 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 08:13:10 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,23 @@ void
 }
 #endif
 
+static void
+	show_usage(void)
+{
+	printf("usage: ./fractol [number]\n"
+		"\n"
+		"[%d] Mandelbrot\n"
+		"[%d] Julia\n",
+		TYPE_MANDELBROT, TYPE_JULIA);
+}
+
 void
 	ft_exit_with_usage(void)
 {
 	ft_putstr_fd(PRG_NAME, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putendl_fd(strerror(EINVAL), STDERR_FILENO);
-	ft_putstr_fd(MSG_USAGE, STDERR_FILENO);
-	ft_putendl_fd(MSG_USAGE_ARGS, STDERR_FILENO);
+	show_usage();
 	exit(EXIT_FAILURE);
 }
 
