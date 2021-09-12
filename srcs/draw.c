@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 23:10:20 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/11 23:15:38 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/12 21:48:14 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ uint32_t
 		return (0);
 	color_range = (COLOR_RANGE + fractol->color_itr) % 1000;
 	return (get_color2(
-				calc_color(i * COLOR_RATIO),
-				calc_color(i * COLOR_RATIO + color_range),
-				calc_color(i * COLOR_RATIO + color_range * 2)));
+			calc_color(i * COLOR_RATIO),
+			calc_color(i * COLOR_RATIO + color_range),
+			calc_color(i * COLOR_RATIO + color_range * 2)));
 }
 
 void
@@ -73,15 +73,18 @@ static void
 	int			ix;
 	t_complex	z;
 	t_complex	c;
+	t_complex	d;
 
+	d[R] = (fractol->max_real - fractol->min_real) / (double)SCREEN_W;
+	d[I] = (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H;
 	iy = -1;
 	while (++iy < SCREEN_H)
 	{
 		ix = -1;
 		while (++ix < SCREEN_W)
 		{
-			c[R] = fractol->min_real + (fractol->max_real - fractol->min_real) / (double)SCREEN_W * (double)ix;
-			c[I] = fractol->min_imgn + (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H * (double)iy;
+			c[R] = fractol->min_real + d[R] * (double)ix;
+			c[I] = fractol->min_imgn + d[I] * (double)iy;
 			ft_bzero(&z, sizeof(t_complex));
 			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, c, fractol));
 		}
@@ -95,17 +98,20 @@ static void
 	int			ix;
 	t_complex	z;
 	t_complex	c;
+	t_complex	d;
 
 	c[R] = JURIA_C_R;
 	c[I] = JURIA_C_I;
+	d[R] = (fractol->max_real - fractol->min_real) / (double)SCREEN_W;
+	d[I] = (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H;
 	iy = -1;
 	while (++iy < SCREEN_H)
 	{
 		ix = -1;
 		while (++ix < SCREEN_W)
 		{
-			z[R] = fractol->min_real + (fractol->max_real - fractol->min_real) / (double)SCREEN_W * (double)ix;
-			z[I] = fractol->min_imgn + (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H * (double)iy;
+			z[R] = fractol->min_real + d[R] * (double)ix;
+			z[I] = fractol->min_imgn + d[I] * (double)iy;
 			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, c, fractol));
 		}
 	}
