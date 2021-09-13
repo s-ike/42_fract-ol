@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 02:02:36 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/11 23:41:25 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 18:07:53 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int
 		else
 			fractol->color_itr += 10;
 	}
+	else if (key == KEY_R)
+		ft_reset(fractol);
 	return (0);
 }
 

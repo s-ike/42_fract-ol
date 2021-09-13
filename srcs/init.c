@@ -6,11 +6,22 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:57:36 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 07:42:04 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 18:10:06 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void
+	ft_reset(t_fractol *fractol)
+{
+	fractol->max_real = MAX_REAL;
+	fractol->min_real = MIN_REAL;
+	fractol->max_imgn = MAX_IMGN;
+	fractol->min_imgn = MIN_IMGN;
+	fractol->itr_base = ITR_BASE;
+	fractol->itr_max = (int)(fractol->itr_base * ITR_RATIO);
+}
 
 t_bool
 	ft_init_fractol(t_fractol *fractol, int type)
@@ -30,12 +41,7 @@ t_bool
 			&fractol->img.bits_per_pixel,
 			&fractol->img.line_length,
 			&fractol->img.endian);
-	fractol->max_real = MAX_REAL;
-	fractol->min_real = MIN_REAL;
-	fractol->max_imgn = MAX_IMGN;
-	fractol->min_imgn = MIN_IMGN;
 	fractol->type = type;
-	fractol->itr_base = ITR_BASE;
-	fractol->itr_max = (int)(fractol->itr_base * ITR_RATIO);
+	ft_reset(fractol);
 	return (TRUE);
 }

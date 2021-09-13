@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 12:51:47 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 18:08:29 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int		ft_key_press(int key, t_fractol *fractol);
 int		ft_mouse(int button, int x, int y, t_fractol *fractol);
 int		ft_x_close(t_fractol *fractol);
 /* init.c */
+void	ft_reset(t_fractol *fractol);
 t_bool	ft_init_fractol(t_fractol *fractol, int type);
 /* move.c */
 void	ft_move(int key, t_fractol *fractol);
