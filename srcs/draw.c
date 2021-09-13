@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 23:10:20 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 12:55:00 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 21:13:43 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,8 @@ static void
 	int			iy;
 	int			ix;
 	t_complex	z;
-	t_complex	c;
 	t_complex	d;
 
-	c[R] = JURIA_C_R;
-	c[I] = JURIA_C_I;
 	d[R] = (fractol->max_real - fractol->min_real) / (double)SCREEN_W;
 	d[I] = (fractol->max_imgn - fractol->min_imgn) / (double)SCREEN_H;
 	iy = -1;
@@ -119,7 +116,7 @@ static void
 		{
 			z[R] = fractol->min_real + d[R] * (double)ix;
 			z[I] = fractol->min_imgn + d[I] * (double)iy;
-			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, c, fractol, FALSE));
+			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, fractol->julia_c, fractol, FALSE));
 		}
 	}
 }

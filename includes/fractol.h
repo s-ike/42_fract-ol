@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 18:08:29 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 21:11:38 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_fractol
 	void		*mlx;
 	void		*win;
 	t_mlximg	img;
+	t_complex	julia_c;
 	double		min_real;
 	double		max_real;
 	double		min_imgn;
@@ -85,6 +86,7 @@ typedef struct s_fractol
 	int			itr_max;
 	int			color_itr;
 	int			type;
+	t_bool		is_shift;
 }	t_fractol;
 
 /* draw.c */
@@ -94,6 +96,7 @@ void	ft_exit_with_usage(void);
 void	ft_exit(t_fractol *fractol, int exit_status);
 /* hooks.c */
 int		ft_key_press(int key, t_fractol *fractol);
+int		ft_key_release(int key, t_fractol *fractol);
 int		ft_mouse(int button, int x, int y, t_fractol *fractol);
 int		ft_x_close(t_fractol *fractol);
 /* init.c */

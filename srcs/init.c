@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:57:36 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 18:10:06 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 21:12:49 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void
 	fractol->min_imgn = MIN_IMGN;
 	fractol->itr_base = ITR_BASE;
 	fractol->itr_max = (int)(fractol->itr_base * ITR_RATIO);
+	fractol->julia_c[R] = JURIA_C_R;
+	fractol->julia_c[I] = JURIA_C_I;
 }
 
 t_bool
@@ -42,6 +44,7 @@ t_bool
 			&fractol->img.line_length,
 			&fractol->img.endian);
 	fractol->type = type;
+	fractol->is_shift = FALSE;
 	ft_reset(fractol);
 	return (TRUE);
 }

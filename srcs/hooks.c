@@ -6,14 +6,14 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 02:02:36 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 18:25:40 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 22:08:48 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 void
-	show_help(void)
+	show_help(t_fractol *fractol)
 {
 	printf("HELP\n"
 		"  [ESC]         Exit.\n"
@@ -21,7 +21,10 @@ void
 		"  [mouse wheel] Zoom.\n"
 		"  [c]           Change color.\n"
 		"  [h]           Show help.\n"
-		"  [r]           Reset.\n");
+		"  [r]           Reset position.\n");
+	if (fractol->type == TYPE_JULIA)
+		printf(
+			"  [shift]       And mouse position, transform the Julia-set.\n");
 }
 
 int
@@ -46,7 +49,17 @@ int
 	else if (key == KEY_R)
 		ft_reset(fractol);
 	else if (key == KEY_H)
-		show_help();
+		show_help(fractol);
+	else if (key == KEY_SHIFT)
+		fractol->is_shift = TRUE;
+	return (0);
+}
+
+int
+	ft_key_release(int key, t_fractol *fractol)
+{
+	if (key == KEY_SHIFT)
+		fractol->is_shift = FALSE;
 	return (0);
 }
 
@@ -56,8 +69,10 @@ int
 	double	mouse_x;
 	double	mouse_y;
 
-	mouse_x = fractol->min_real + (fractol->max_real - fractol->min_real) * x / SCREEN_W;
-	mouse_y = fractol->min_imgn + (fractol->max_imgn - fractol->min_imgn) * y / SCREEN_H;
+	mouse_x = fractol->min_real
+		+ (fractol->max_real - fractol->min_real) * x / SCREEN_W;
+	mouse_y = fractol->min_imgn
+		+ (fractol->max_imgn - fractol->min_imgn) * y / SCREEN_H;
 	if (button == MOUSE_ZOOM_IN)
 		ft_zoom_in(fractol, mouse_x, mouse_y);
 	else if (button == MOUSE_ZOOM_OUT)
