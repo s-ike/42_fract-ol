@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:42 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 08:13:10 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 12:57:45 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ static void
 	printf("usage: ./fractol [number]\n"
 		"\n"
 		"[%d] Mandelbrot\n"
-		"[%d] Julia\n",
-		TYPE_MANDELBROT, TYPE_JULIA);
+		"[%d] Julia\n"
+		"[%d] Burning Ship\n",
+		TYPE_MANDELBROT, TYPE_JULIA, TYPE_BURNING_SHIP);
 }
 
 void

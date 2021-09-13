@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 23:10:20 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 07:42:39 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 12:55:00 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static uint32_t
 }
 
 uint32_t
-	get_color(t_complex z, t_complex c, t_fractol *fractol)
+	get_color(t_complex z, t_complex c, t_fractol *fractol, t_bool is_bship)
 {
 	int			i;
 	int			color_range;
@@ -47,6 +47,13 @@ uint32_t
 			break ;
 		z[I] = z[R] * z[I] * 2 + c[I];
 		z[R] = p[R] - p[I] + c[R];
+		if (is_bship == TRUE)
+		{
+			if (z[I] < 0)
+				z[I] = -z[I];
+			if (z[R] < 0)
+				z[R] = -z[R];
+		}
 	}
 	if (i == fractol->itr_max)
 		return (0);
@@ -67,7 +74,7 @@ void
 }
 
 static void
-	draw_mandelbrot(t_fractol *fractol)
+	draw_mandelbrot(t_fractol *fractol, t_bool is_bship)
 {
 	int			iy;
 	int			ix;
@@ -86,7 +93,7 @@ static void
 			c[R] = fractol->min_real + d[R] * (double)ix;
 			c[I] = fractol->min_imgn + d[I] * (double)iy;
 			ft_bzero(&z, sizeof(t_complex));
-			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, c, fractol));
+			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, c, fractol, is_bship));
 		}
 	}
 }
@@ -112,7 +119,7 @@ static void
 		{
 			z[R] = fractol->min_real + d[R] * (double)ix;
 			z[I] = fractol->min_imgn + d[I] * (double)iy;
-			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, c, fractol));
+			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, c, fractol, FALSE));
 		}
 	}
 }
@@ -121,7 +128,9 @@ void
 	ft_draw(t_fractol *fractol)
 {
 	if (fractol->type == TYPE_MANDELBROT)
-		draw_mandelbrot(fractol);
+		draw_mandelbrot(fractol, FALSE);
 	else if (fractol->type == TYPE_JULIA)
 		draw_julia(fractol);
+	else if (fractol->type == TYPE_BURNING_SHIP)
+		draw_mandelbrot(fractol, TRUE);
 }
