@@ -2,6 +2,7 @@ NAME		:= fractol
 
 SRCDIR		:= ./srcs/
 SRC			:= main.c \
+				color.c \
 				draw.c \
 				exit.c \
 				hooks.c \

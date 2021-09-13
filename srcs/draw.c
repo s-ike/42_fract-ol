@@ -6,37 +6,18 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 23:10:20 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 21:13:43 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 22:44:14 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int
-	calc_color(int i)
-{
-	return ((i % 256) * (255 - (i % 256)) / 65);
-}
-
-static uint32_t
-	get_color2(uint8_t r, uint8_t g, uint8_t b)
-{
-	uint32_t	color;
-
-	color = r;
-	color <<= 8;
-	color |= g;
-	color <<= 8;
-	color |= b;
-	return (color);
-}
-
 uint32_t
 	get_color(t_complex z, t_complex c, t_fractol *fractol, t_bool is_bship)
 {
 	int			i;
-	int			color_range;
 	t_complex	p;
+	const int	color_range = COLOR_RANGE + fractol->color_itr;
 
 	i = -1;
 	while (++i < fractol->itr_max)
@@ -49,19 +30,16 @@ uint32_t
 		z[R] = p[R] - p[I] + c[R];
 		if (is_bship == TRUE)
 		{
-			if (z[I] < 0)
-				z[I] = -z[I];
-			if (z[R] < 0)
-				z[R] = -z[R];
+			z[R] = fabs(z[R]);
+			z[I] = fabs(z[I]);
 		}
 	}
 	if (i == fractol->itr_max)
 		return (0);
-	color_range = (COLOR_RANGE + fractol->color_itr) % 1000;
-	return (get_color2(
-			calc_color(i * COLOR_RATIO),
-			calc_color(i * COLOR_RATIO + color_range),
-			calc_color(i * COLOR_RATIO + color_range * 2)));
+	return (ft_rgb(
+			ft_calc_color(i * COLOR_RATIO),
+			ft_calc_color(i * COLOR_RATIO + color_range),
+			ft_calc_color(i * COLOR_RATIO + color_range * 2)));
 }
 
 void
@@ -93,7 +71,8 @@ static void
 			c[R] = fractol->min_real + d[R] * (double)ix;
 			c[I] = fractol->min_imgn + d[I] * (double)iy;
 			ft_bzero(&z, sizeof(t_complex));
-			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, c, fractol, is_bship));
+			my_mlx_pixel_put(&fractol->img, ix, iy,
+				get_color(z, c, fractol, is_bship));
 		}
 	}
 }
@@ -116,7 +95,8 @@ static void
 		{
 			z[R] = fractol->min_real + d[R] * (double)ix;
 			z[I] = fractol->min_imgn + d[I] * (double)iy;
-			my_mlx_pixel_put(&fractol->img, ix, iy, get_color(z, fractol->julia_c, fractol, FALSE));
+			my_mlx_pixel_put(&fractol->img, ix, iy,
+				get_color(z, fractol->julia_c, fractol, FALSE));
 		}
 	}
 }

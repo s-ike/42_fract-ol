@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 21:11:38 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 22:36:38 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,25 +89,28 @@ typedef struct s_fractol
 	t_bool		is_shift;
 }	t_fractol;
 
+/* color.c */
+int			ft_calc_color(int i);
+uint32_t	ft_rgb(uint8_t r, uint8_t g, uint8_t b);
 /* draw.c */
-void	ft_draw(t_fractol *fractol);
+void		ft_draw(t_fractol *fractol);
 /* exit.c */
-void	ft_exit_with_usage(void);
-void	ft_exit(t_fractol *fractol, int exit_status);
+void		ft_exit_with_usage(void);
+void		ft_exit(t_fractol *fractol, int exit_status);
 /* hooks.c */
-int		ft_key_press(int key, t_fractol *fractol);
-int		ft_key_release(int key, t_fractol *fractol);
-int		ft_mouse(int button, int x, int y, t_fractol *fractol);
-int		ft_x_close(t_fractol *fractol);
+int			ft_key_press(int key, t_fractol *fractol);
+int			ft_key_release(int key, t_fractol *fractol);
+int			ft_mouse(int button, int x, int y, t_fractol *fractol);
+int			ft_x_close(t_fractol *fractol);
 /* init.c */
-void	ft_reset(t_fractol *fractol);
-t_bool	ft_init_fractol(t_fractol *fractol, int type);
+void		ft_reset(t_fractol *fractol);
+t_bool		ft_init_fractol(t_fractol *fractol, int type);
 /* move.c */
-void	ft_move(int key, t_fractol *fractol);
+void		ft_move(int key, t_fractol *fractol);
 /* validator.c */
-t_bool	ft_is_valid_args(int argc, char **argv);
+t_bool		ft_is_valid_args(int argc, char **argv);
 /* zoom.c */
-void	ft_zoom_in(t_fractol *fractol, double x, double y);
-void	ft_zoom_out(t_fractol *fractol, double x, double y);
+void		ft_zoom_in(t_fractol *fractol, double x, double y);
+void		ft_zoom_out(t_fractol *fractol, double x, double y);
 
 #endif
