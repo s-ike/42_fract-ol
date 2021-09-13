@@ -6,11 +6,23 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 02:02:36 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 18:07:53 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/13 18:25:40 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void
+	show_help(void)
+{
+	printf("HELP\n"
+		"  [ESC]         Exit.\n"
+		"  [arrows]      Move.\n"
+		"  [mouse wheel] Zoom.\n"
+		"  [c]           Change color.\n"
+		"  [h]           Show help.\n"
+		"  [r]           Reset.\n");
+}
 
 int
 	ft_key_press(int key, t_fractol *fractol)
@@ -33,6 +45,8 @@ int
 	}
 	else if (key == KEY_R)
 		ft_reset(fractol);
+	else if (key == KEY_H)
+		show_help();
 	return (0);
 }
 
