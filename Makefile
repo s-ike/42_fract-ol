@@ -55,7 +55,7 @@ RM			:= rm -f
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ) $(LIBPATH) $(MLX_PATH)
+$(NAME):	$(LIBPATH) $(MLX_PATH) $(OBJ)
 			cp $(MLX_PATH) .
 			$(CC) $(CFLAGS) $(OBJ) $(DEBUG) $(DEBUG2) -L. $(MLX_FLAGS) $(LIBPATH) -o $(NAME)
 			@echo $(C_GREEN)"=== Make Done ==="$(C_DEFAULT)$(C_REST)
