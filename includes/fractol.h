@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 22:36:38 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/14 22:35:14 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ enum e_type
 	TYPE_MANDELBROT,
 	TYPE_JULIA,
 	TYPE_BURNING_SHIP,
+	TYPE_TRICORN,
 	TYPE_END
 };
 

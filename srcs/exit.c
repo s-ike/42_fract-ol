@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:42 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 12:57:45 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/14 22:42:42 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ static void
 		"\n"
 		"[%d] Mandelbrot\n"
 		"[%d] Julia\n"
-		"[%d] Burning Ship\n",
-		TYPE_MANDELBROT, TYPE_JULIA, TYPE_BURNING_SHIP);
+		"[%d] Burning Ship\n"
+		"[%d] Tricorn\n",
+		TYPE_MANDELBROT, TYPE_JULIA, TYPE_BURNING_SHIP, TYPE_TRICORN);
 }
 
 void

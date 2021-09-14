@@ -6,29 +6,29 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 23:10:20 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 22:44:14 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/14 23:39:38 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 uint32_t
-	get_color(t_complex z, t_complex c, t_fractol *fractol, t_bool is_bship)
+	get_color(t_complex z, t_complex c, t_fractol *fractol)
 {
 	int			i;
-	t_complex	p;
+	double		tmp;
 	const int	color_range = COLOR_RANGE + fractol->color_itr;
 
 	i = -1;
-	while (++i < fractol->itr_max)
+	while (++i < fractol->itr_max && z[R] * z[R] + z[I] * z[I] <= 4.0)
 	{
-		p[R] = z[R] * z[R];
-		p[I] = z[I] * z[I];
-		if (4.0 < p[R] + p[I])
-			break ;
-		z[I] = z[R] * z[I] * 2 + c[I];
-		z[R] = p[R] - p[I] + c[R];
-		if (is_bship == TRUE)
+		tmp = z[R] * z[R] - z[I] * z[I] + c[R];
+		if (fractol->type == TYPE_TRICORN)
+			z[I] = -(z[R] * z[I]) * 2 + c[I];
+		else
+			z[I] = z[R] * z[I] * 2 + c[I];
+		z[R] = tmp;
+		if (fractol->type == TYPE_BURNING_SHIP)
 		{
 			z[R] = fabs(z[R]);
 			z[I] = fabs(z[I]);
@@ -52,7 +52,7 @@ void
 }
 
 static void
-	draw_mandelbrot(t_fractol *fractol, t_bool is_bship)
+	draw_mandelbrot(t_fractol *fractol)
 {
 	int			iy;
 	int			ix;
@@ -72,7 +72,7 @@ static void
 			c[I] = fractol->min_imgn + d[I] * (double)iy;
 			ft_bzero(&z, sizeof(t_complex));
 			my_mlx_pixel_put(&fractol->img, ix, iy,
-				get_color(z, c, fractol, is_bship));
+				get_color(z, c, fractol));
 		}
 	}
 }
@@ -96,7 +96,7 @@ static void
 			z[R] = fractol->min_real + d[R] * (double)ix;
 			z[I] = fractol->min_imgn + d[I] * (double)iy;
 			my_mlx_pixel_put(&fractol->img, ix, iy,
-				get_color(z, fractol->julia_c, fractol, FALSE));
+				get_color(z, fractol->julia_c, fractol));
 		}
 	}
 }
@@ -105,9 +105,11 @@ void
 	ft_draw(t_fractol *fractol)
 {
 	if (fractol->type == TYPE_MANDELBROT)
-		draw_mandelbrot(fractol, FALSE);
+		draw_mandelbrot(fractol);
 	else if (fractol->type == TYPE_JULIA)
 		draw_julia(fractol);
 	else if (fractol->type == TYPE_BURNING_SHIP)
-		draw_mandelbrot(fractol, TRUE);
+		draw_mandelbrot(fractol);
+	else if (fractol->type == TYPE_TRICORN)
+		draw_mandelbrot(fractol);
 }
