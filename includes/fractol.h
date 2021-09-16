@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:46 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/14 22:35:14 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/16 21:55:33 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define NUM_MAX 2.0
 # define MAX_REAL NUM_MAX
 # define MAX_IMGN NUM_MAX
+
+# define MIN_RANGE 0.0000000000000025
 
 # define JURIA_C_R 0.4
 # define JURIA_C_I -0.325

@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 01:12:50 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/11 00:46:06 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/16 21:55:42 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void
 {
 	float	tmp;
 
+	if (fractol->max_real - fractol->min_real < MIN_RANGE
+	|| fractol->max_imgn - fractol->min_imgn < MIN_RANGE)
+		return ;
 	fractol->max_real = x + (fractol->max_real - x) * ZOOM_RATIO;
 	fractol->min_real = x + (fractol->min_real - x) * ZOOM_RATIO;
 	fractol->max_imgn = y + (fractol->max_imgn - y) * ZOOM_RATIO;
