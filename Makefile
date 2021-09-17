@@ -44,7 +44,7 @@ DEBUG		:= -g
 ifdef LEAKS
 DEBUG2		:=
 else
-DEBUG2		:= -fsanitize=address
+DEBUG2		:= #-fsanitize=address
 endif
 
 CC			:= gcc
