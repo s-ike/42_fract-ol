@@ -8,6 +8,7 @@ SRC			:= main.c \
 				hooks.c \
 				init.c \
 				move.c \
+				utils.c \
 				validator.c \
 				zoom.c
 SRC			:= $(addprefix $(SRCDIR), $(SRC))

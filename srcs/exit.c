@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:42 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/14 22:42:42 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/23 18:00:09 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ void
 static void
 	show_usage(void)
 {
-	printf("usage: ./fractol [number]\n"
+	printf("usage: ./fractol number"
+		" [real part of c in Julia] [imaginary part of c in Julia]\n"
 		"\n"
-		"[%d] Mandelbrot\n"
-		"[%d] Julia\n"
-		"[%d] Burning Ship\n"
-		"[%d] Tricorn\n",
+		"number:\n"
+		"  [%d] Mandelbrot\n"
+		"  [%d] Julia\n"
+		"  [%d] Burning Ship\n"
+		"  [%d] Tricorn\n",
 		TYPE_MANDELBROT, TYPE_JULIA, TYPE_BURNING_SHIP, TYPE_TRICORN);
 }
 

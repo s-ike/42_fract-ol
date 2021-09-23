@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 23:28:32 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 07:44:35 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/23 15:53:12 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,27 @@
 t_bool
 	ft_is_valid_args(int argc, char **argv)
 {
-	if (argc != 2)
-		return (FALSE);
-	if (ft_strlen(argv[1]) == 1
-		&& ft_isdigit(*argv[1])
-		&& ft_atoi(argv[1]) > TYPE_START
-		&& ft_atoi(argv[1]) < TYPE_END)
+	int	argi;
+	int	type;
+
+	argi = 2;
+	if (argc < argi
+		|| ft_strlen(argv[argi - 1]) != 1 || !ft_isdigit(*argv[argi - 1]))
 	{
+		return (FALSE);
+	}
+	type = ft_atoi(argv[argi - 1]);
+	if (TYPE_START < type && type < TYPE_END)
+	{
+		if (type == TYPE_JULIA)
+		{
+			argi = 3;
+			if (argi <= argc && !isfinite(ft_atof(argv[argi - 1])))
+				return (FALSE);
+			argi = 4;
+			if (argi <= argc && !isfinite(ft_atof(argv[argi - 1])))
+				return (FALSE);
+		}
 		return (TRUE);
 	}
 	return (FALSE);

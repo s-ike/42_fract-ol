@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:57:36 by sikeda            #+#    #+#             */
-/*   Updated: 2021/09/13 21:12:49 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/09/23 16:28:11 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void
 }
 
 t_bool
-	ft_init_fractol(t_fractol *fractol, int type)
+	ft_init_fractol(t_fractol *fractol, int argc, char **argv)
 {
 	ft_bzero(fractol, sizeof(t_fractol));
 	fractol->mlx = mlx_init();
@@ -43,8 +43,12 @@ t_bool
 			&fractol->img.bits_per_pixel,
 			&fractol->img.line_length,
 			&fractol->img.endian);
-	fractol->type = type;
+	fractol->type = ft_atoi(argv[1]);
 	fractol->is_shift = FALSE;
 	ft_reset(fractol);
+	if (fractol->type == TYPE_JULIA && 3 <= argc)
+		fractol->julia_c[R] = ft_atof(argv[2]);
+	if (fractol->type == TYPE_JULIA && 4 <= argc)
+		fractol->julia_c[I] = ft_atof(argv[3]);
 	return (TRUE);
 }
