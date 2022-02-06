@@ -13,12 +13,16 @@ mac, linuxにて動作検証しています
 macではXQuartzをインストールしています
 ```
 $ make
+
 Mandelbrot:
 $ ./fractol 1
+
 Julia:
 $ ./fractol 2 [real part] [imaginary part]
+
 Burning Ship:
 $ ./fractol 3
+
 Tricorn:
 $ ./fractol 4
 ```
